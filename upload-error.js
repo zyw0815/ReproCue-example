@@ -1,3 +1,4 @@
-function showUploadError() {
-  // A rejected request leaves the page in the uploading state.
+function showUploadError(status, retryButton) {
+  status.textContent = 'Upload failed. Try again.';
+  retryButton.hidden = false;
 }
