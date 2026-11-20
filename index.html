@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Image upload</title>
+    <script src="upload-error.js" defer></script>
+    <script src="upload.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>Image upload</h1>
+      <form>
+        <label for="image">Choose an image</label>
+        <input id="image" type="file" accept="image/*" required />
+        <button id="upload" type="submit">Upload image</button>
+        <button id="retry" type="submit" hidden>Retry upload</button>
+      </form>
+      <p role="status"></p>
+    </main>
+  </body>
+</html>
