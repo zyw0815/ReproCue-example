@@ -10,3 +10,9 @@ This sample exercises an upload-and-retry flow in a browser. The baseline gets s
 4. Open the workflow summary from the pull request checks. The `reprocue-evidence` artifact contains the report and both browser traces.
 
 For setup details, see [ReproCue](https://github.com/zyw0815/ReproCue).
+
+## Compare the error state
+
+The visual example tests the upload panel after a failed upload. Its screenshot checkpoint records the same moment in both versions. The before view shows the ordinary status text; the after view shows the error banner.
+
+Open the ReproCue comment in the pull request conversation and follow its evidence link. Extract the artifact and open `report.html` in a browser to see both screenshots together.

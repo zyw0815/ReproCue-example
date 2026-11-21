@@ -16,6 +16,7 @@ form.addEventListener('submit', async (event) => {
   event.preventDefault();
   uploadButton.disabled = true;
   retryButton.hidden = true;
+  delete status.dataset.state;
   status.textContent = 'Uploading…';
 
   try {

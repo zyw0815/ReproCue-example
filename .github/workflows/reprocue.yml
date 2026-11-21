@@ -12,6 +12,8 @@ jobs:
     if: ${{ contains(github.event.pull_request.labels.*.name, 'reprocue') }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      artifact-url: ${{ steps.evidence.outputs.artifact-url }}
     steps:
       - name: Read the reproduction path
         id: scenario
@@ -47,8 +49,20 @@ jobs:
       # Install browsers for both revisions if their Playwright versions differ.
       - name: Install Playwright Chromium
         run: npm ci && npm exec -- playwright install --with-deps chromium
-      - uses: zyw0815/ReproCue@v0.1.0-alpha.1
+      - uses: zyw0815/ReproCue@a8526d0eb13b5949749e28b6b00af96e0b106c55
+        id: evidence
         with:
           base: ${{ github.event.pull_request.base.sha }}
           head: ${{ github.event.pull_request.head.sha }}
           spec: ${{ steps.scenario.outputs.spec }}
+
+  publish:
+    needs: reprocue
+    if: >-
+      ${{ !cancelled() && needs.reprocue.outputs.artifact-url != '' &&
+          github.event.pull_request.head.repo.full_name == github.repository }}
+    permissions:
+      pull-requests: write
+    uses: zyw0815/ReproCue/.github/workflows/pr-evidence.yml@a8526d0eb13b5949749e28b6b00af96e0b106c55
+    with:
+      artifact-url: ${{ needs.reprocue.outputs.artifact-url }}
