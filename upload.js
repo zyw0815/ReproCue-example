@@ -21,6 +21,7 @@ form.addEventListener('submit', async (event) => {
 
   try {
     await sendImage();
+    status.dataset.state = 'success';
     status.textContent = 'Upload complete.';
   } catch {
     showUploadError(status, retryButton);
