@@ -1,0 +1,49 @@
+name: Publish ReproCue report
+on:
+  workflow_dispatch:
+    inputs:
+      pull-request:
+        description: Number of the pull request approved for public Pages publication
+        required: true
+        type: string
+      run-id:
+        description: Numeric ID of its successful verification run
+        required: true
+        type: string
+
+concurrency:
+  group: reprocue-pages
+
+jobs:
+  publish:
+    if: >-
+      ${{ github.event.repository.visibility == 'public' && github.ref_type == 'branch' &&
+          github.ref_name == github.event.repository.default_branch }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: reprocue-comment-${{ inputs.pull-request }}
+    environment:
+      name: github-pages
+      url: ${{ steps.report.outputs.report-url }}
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+      pages: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - uses: zyw0815/ReproCue/publish-pages@75d0ad047c76f8d739287fa83c947893f219d02f
+        id: report
+        with:
+          pull-request: ${{ inputs.pull-request }}
+          run-id: ${{ inputs.run-id }}
+          seed-directory: docs

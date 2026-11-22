@@ -49,7 +49,7 @@ jobs:
       # Install browsers for both revisions if their Playwright versions differ.
       - name: Install Playwright Chromium
         run: npm ci && npm exec -- playwright install --with-deps chromium
-      - uses: zyw0815/ReproCue@a8526d0eb13b5949749e28b6b00af96e0b106c55
+      - uses: zyw0815/ReproCue@75d0ad047c76f8d739287fa83c947893f219d02f
         id: evidence
         with:
           base: ${{ github.event.pull_request.base.sha }}
@@ -63,6 +63,6 @@ jobs:
           github.event.pull_request.head.repo.full_name == github.repository }}
     permissions:
       pull-requests: write
-    uses: zyw0815/ReproCue/.github/workflows/pr-evidence.yml@a8526d0eb13b5949749e28b6b00af96e0b106c55
+    uses: zyw0815/ReproCue/.github/workflows/pr-evidence.yml@75d0ad047c76f8d739287fa83c947893f219d02f
     with:
       artifact-url: ${{ needs.reprocue.outputs.artifact-url }}
