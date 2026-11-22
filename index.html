@@ -4,14 +4,23 @@
     <meta charset="utf-8" />
     <title>Image upload</title>
     <style>
-      [data-state="error"] {
+      [data-state="error"],
+      [data-state="success"] {
         padding: 12px 16px;
-        border: 1px solid #d55a50;
+        border: 1px solid;
         border-left-width: 4px;
         border-radius: 6px;
+        font-weight: 600;
+      }
+      [data-state="error"] {
+        border-color: #d55a50;
         background: #fff1ef;
         color: #872319;
-        font-weight: 600;
+      }
+      [data-state="success"] {
+        border-color: #338e59;
+        background: #ecf7ef;
+        color: #205e39;
       }
     </style>
     <script src="upload-error.js" defer></script>
