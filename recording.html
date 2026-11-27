@@ -22,6 +22,7 @@
     const formats = document.querySelector('#formats');
     formats.hidden = !formats.hidden;
     toggle.setAttribute('aria-expanded', String(!formats.hidden));
+    toggle.textContent = formats.hidden ? 'Show supported formats' : 'Hide supported formats';
   });
 </script>
 </body>
