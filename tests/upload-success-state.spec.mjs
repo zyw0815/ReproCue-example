@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test.use({ viewport: { width: 680, height: 360 } });
 
 test('visually confirms that retry did complete the upload', async ({ page }, testInfo) => {
-  await page.goto(new URL('../index.html', import.meta.url).href);
+  await page.goto('/');
   await page.getByLabel('Choose an image').setInputFiles({
     name: 'sample.png',
     mimeType: 'image/png',

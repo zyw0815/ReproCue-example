@@ -6,7 +6,7 @@ const image = Buffer.from(
 );
 
 test('a failed image upload can be retried', async ({ page }) => {
-  await page.goto(new URL('../index.html', import.meta.url).href);
+  await page.goto('/');
   await page.getByLabel('Choose an image').setInputFiles({
     name: 'sample.png',
     mimeType: 'image/png',
