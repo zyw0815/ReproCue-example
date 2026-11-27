@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReproCue recording example</title>
+  <style>
+    body { max-width: 38rem; margin: 4rem auto; padding: 0 1.5rem; line-height: 1.5; font-family: system-ui, sans-serif; }
+    button { color: #fff; background: #174e83; padding: .65rem .9rem; border: 0; border-radius: .4rem; font: inherit; }
+    #formats { padding: .65rem .9rem; border-left: 4px solid #174e83; background: #eef5fb; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Image upload help</h1>
+  <button type="button" aria-controls="formats" aria-expanded="false">Show supported formats</button>
+  <p id="formats" hidden>PNG images are supported.</p>
+</main>
+<script>
+  const toggle = document.querySelector('button');
+  toggle.addEventListener('click', () => {
+    const formats = document.querySelector('#formats');
+    formats.hidden = !formats.hidden;
+    toggle.setAttribute('aria-expanded', String(!formats.hidden));
+  });
+</script>
+</body>
+</html>

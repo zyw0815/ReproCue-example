@@ -22,3 +22,7 @@ Open the ReproCue comment in the pull request conversation and follow its eviden
 The [first published report](https://zyw0815.github.io/ReproCue-example/reports/pr-6/1284476e7f12735a832f856f23f986feb0ae0517/) shows the upload error state from [PR #6](https://github.com/zyw0815/ReproCue-example/pull/6). When the automated publisher initializes, it copies the existing `docs/` pages into the site snapshot.
 
 For a new public comparison, run **Publish ReproCue report** from the Actions tab on `main`. Enter the PR number and the numeric ID of its successful verification run. The publisher keeps earlier addresses, deploys the site through GitHub Pages, and updates the PR comment after deployment.
+
+## Run the browser recording fixture
+
+Install the example dependencies with `npm ci` and start the loopback server with `node serve.mjs`. Open `http://127.0.0.1:4316/recording.html` to see the recording scenario. Playwright uses the same origin through its `baseURL` and starts the server for tests.
